@@ -1,0 +1,186 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/*  Design tokens — Apple-clean surfaces meet Linear's crisp contrast  */
+/* ------------------------------------------------------------------ */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 224 20% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 20% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 20% 12%;
+
+    --primary: 245 75% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 224 20% 20%;
+
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+
+    --accent: 245 75% 96%;
+    --accent-foreground: 245 60% 40%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 62% 42%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 30 40% 12%;
+
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 245 75% 60%;
+
+    --sidebar: 240 20% 99%;
+    --sidebar-foreground: 224 16% 30%;
+    --sidebar-accent: 245 75% 96%;
+    --sidebar-border: 240 6% 92%;
+
+    --radius: 0.85rem;
+  }
+
+  .dark {
+    --background: 240 12% 6%;
+    --foreground: 220 18% 96%;
+
+    --card: 240 10% 9%;
+    --card-foreground: 220 18% 96%;
+
+    --popover: 240 10% 9%;
+    --popover-foreground: 220 18% 96%;
+
+    --primary: 245 80% 68%;
+    --primary-foreground: 240 20% 8%;
+
+    --secondary: 240 6% 15%;
+    --secondary-foreground: 220 14% 90%;
+
+    --muted: 240 6% 15%;
+    --muted-foreground: 240 5% 62%;
+
+    --accent: 245 40% 20%;
+    --accent-foreground: 245 80% 85%;
+
+    --destructive: 0 62% 52%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 55% 48%;
+    --success-foreground: 240 20% 8%;
+
+    --warning: 38 90% 55%;
+    --warning-foreground: 30 40% 10%;
+
+    --border: 240 6% 18%;
+    --input: 240 6% 20%;
+    --ring: 245 80% 68%;
+
+    --sidebar: 240 12% 8%;
+    --sidebar-foreground: 220 14% 78%;
+    --sidebar-accent: 245 40% 20%;
+    --sidebar-border: 240 6% 16%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'ss01';
+  }
+
+  /* Respect reduced-motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Refined focus ring */
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-border;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/40;
+    background-clip: content-box;
+  }
+}
+
+@layer components {
+  /* Glassmorphism surface */
+  .glass {
+    @apply border border-white/10 bg-white/70 backdrop-blur-xl backdrop-saturate-150;
+  }
+  .dark .glass {
+    @apply border-white/5 bg-white/5;
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-indigo-500 to-fuchsia-500 bg-clip-text text-transparent;
+  }
+
+  /* Animated aurora background used behind hero sections */
+  .aurora {
+    background:
+      radial-gradient(40% 40% at 20% 20%, hsl(245 80% 60% / 0.25), transparent 60%),
+      radial-gradient(35% 45% at 80% 15%, hsl(280 80% 62% / 0.22), transparent 60%),
+      radial-gradient(45% 45% at 60% 85%, hsl(190 85% 55% / 0.18), transparent 60%);
+  }
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  /* Skeleton shimmer overlay */
+  .shimmer::after {
+    content: '';
+    @apply absolute inset-0 -translate-x-full;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--foreground) / 0.06),
+      transparent
+    );
+    animation: shimmer 1.6s infinite;
+  }
+}
