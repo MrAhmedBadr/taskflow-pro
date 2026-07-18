@@ -16,7 +16,7 @@ createRoot(document.getElementById('root')!).render(
       <QueryClientProvider client={queryClient}>
         <ThemeProvider>
           <TooltipProvider delayDuration={200} skipDelayDuration={300}>
-            <BrowserRouter>
+            <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
               <App />
               <Toaster
                 position="top-right"

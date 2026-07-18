@@ -71,9 +71,9 @@ export function Hero() {
             </Button>
           </Magnetic>
           <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
-            <a href="#features">
-              <Play /> Watch demo
-            </a>
+            <Link to="/dashboard">
+              <Play /> View live demo
+            </Link>
           </Button>
         </motion.div>
 

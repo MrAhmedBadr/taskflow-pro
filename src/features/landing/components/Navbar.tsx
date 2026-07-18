@@ -101,6 +101,9 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-1.5">
+            <Button asChild variant="ghost" size="sm" className="hidden md:inline-flex">
+              <Link to="/dashboard">Live demo</Link>
+            </Button>
             <ThemeToggle />
             <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
               <Link to="/login">Sign in</Link>
@@ -142,6 +145,13 @@ export function Navbar() {
                   {link.label}
                 </motion.a>
               ))}
+              <Link
+                to="/dashboard"
+                onClick={() => setOpen(false)}
+                className="rounded-lg px-3.5 py-2.5 text-sm font-medium text-muted-foreground hover:bg-accent hover:text-foreground"
+              >
+                Live demo
+              </Link>
               <div className="mt-2 flex gap-2">
                 <Button asChild variant="outline" className="flex-1">
                   <Link to="/login">Sign in</Link>
