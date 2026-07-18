@@ -139,7 +139,7 @@ export default function DashboardPreview() {
             </SimpleTooltip>
             <Avatar className="ml-1 ring-2 ring-primary/20">
               <AvatarFallback className="bg-gradient-to-br from-primary to-indigo-500 text-white">
-                IO
+                AB
               </AvatarFallback>
             </Avatar>
           </div>
@@ -163,7 +163,7 @@ export default function DashboardPreview() {
               >
                 <div>
                   <h1 className="text-2xl font-semibold tracking-tight">
-                    Good morning, Islam 👋
+                    Good morning, Ahmed 👋
                   </h1>
                   <p className="mt-1 text-sm text-muted-foreground">
                     Here’s what’s happening across your workspace today.

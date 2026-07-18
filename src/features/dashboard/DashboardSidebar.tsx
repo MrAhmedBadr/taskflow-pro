@@ -116,11 +116,11 @@ export function DashboardSidebar({ collapsed }: { collapsed: boolean }) {
           )}
         >
           <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-indigo-500 text-xs font-bold text-white">
-            IO
+            AB
           </span>
           {!collapsed && (
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-medium">Islam Osama</p>
+              <p className="truncate text-sm font-medium">Ahmed Badr</p>
               <p className="truncate text-xs text-muted-foreground">Pro workspace</p>
             </div>
           )}
