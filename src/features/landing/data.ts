@@ -193,9 +193,18 @@ export const FAQS = [
   },
 ];
 
-export const STATS = [
-  { value: '12k+', label: 'Teams' },
-  { value: '4.9/5', label: 'Avg. rating' },
-  { value: '99.99%', label: 'Uptime' },
-  { value: '2M+', label: 'Tasks shipped' },
+export interface Stat {
+  value: number;
+  label: string;
+  prefix?: string;
+  suffix?: string;
+  decimals?: number;
+  format?: boolean;
+}
+
+export const STATS: Stat[] = [
+  { value: 12, label: 'Teams', suffix: 'k+' },
+  { value: 4.9, label: 'Avg. rating', suffix: '/5', decimals: 1 },
+  { value: 99.99, label: 'Uptime', suffix: '%', decimals: 2 },
+  { value: 2, label: 'Tasks shipped', suffix: 'M+' },
 ];

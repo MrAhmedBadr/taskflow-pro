@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Check, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { SpotlightCard } from '@/components/ui/spotlight-card';
 import { Reveal } from '@/components/common/Reveal';
 import { cn } from '@/lib/utils';
+import { spring } from '@/lib/motion';
 import { PRICING } from '../data';
 import { SectionHeading } from './SectionHeading';
 
@@ -15,7 +16,7 @@ export function Pricing() {
   const [cycle, setCycle] = useState<Cycle>('yearly');
 
   return (
-    <section id="pricing" className="py-24 sm:py-32">
+    <section id="pricing" className="scroll-mt-24 py-24 sm:py-32">
       <div className="container">
         <SectionHeading
           eyebrow="Pricing"
@@ -33,6 +34,7 @@ export function Pricing() {
               <button
                 key={c}
                 onClick={() => setCycle(c)}
+                aria-pressed={cycle === c}
                 className={cn(
                   'relative rounded-full px-4 py-1.5 text-sm font-medium capitalize transition-colors',
                   cycle === c ? 'text-primary-foreground' : 'text-muted-foreground hover:text-foreground',
@@ -41,8 +43,8 @@ export function Pricing() {
                 {cycle === c && (
                   <motion.span
                     layoutId="cycle-pill"
-                    className="absolute inset-0 -z-10 rounded-full bg-primary"
-                    transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
+                    className="absolute inset-0 -z-10 rounded-full bg-primary shadow-glow-sm"
+                    transition={spring.bounce}
                   />
                 )}
                 {c}
@@ -56,15 +58,15 @@ export function Pricing() {
           </div>
         </Reveal>
 
-        <div className="mx-auto mt-12 grid max-w-5xl items-stretch gap-6 lg:grid-cols-3">
+        <div className="mx-auto mt-14 grid max-w-5xl items-stretch gap-6 lg:grid-cols-3">
           {PRICING.map((plan, i) => (
             <Reveal key={plan.name} delay={i * 0.08}>
-              <Card
+              <SpotlightCard
                 className={cn(
-                  'relative flex h-full flex-col p-7 transition-all duration-300',
+                  'flex h-full flex-col p-7',
                   plan.popular
                     ? 'border-primary/40 shadow-glow lg:-translate-y-3 lg:scale-[1.02]'
-                    : 'hover:-translate-y-1 hover:shadow-elevated',
+                    : 'hover:-translate-y-1',
                 )}
               >
                 {plan.popular && (
@@ -72,12 +74,22 @@ export function Pricing() {
                     <Sparkles className="size-3" /> Most popular
                   </span>
                 )}
-                <h3 className="text-lg font-semibold">{plan.name}</h3>
+                <h3 className="text-lg font-semibold tracking-tight">{plan.name}</h3>
                 <p className="mt-1 text-sm text-muted-foreground">{plan.description}</p>
                 <div className="mt-5 flex items-end gap-1">
-                  <span className="text-4xl font-semibold tracking-tight">
-                    ${plan.price[cycle]}
-                  </span>
+                  <span className="text-sm font-medium text-muted-foreground">$</span>
+                  <AnimatePresence mode="popLayout" initial={false}>
+                    <motion.span
+                      key={plan.price[cycle]}
+                      initial={{ y: 12, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: -12, opacity: 0 }}
+                      transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                      className="text-5xl font-semibold tracking-tight tabular-nums"
+                    >
+                      {plan.price[cycle]}
+                    </motion.span>
+                  </AnimatePresence>
                   <span className="pb-1 text-sm text-muted-foreground">/user/mo</span>
                 </div>
 
@@ -99,7 +111,7 @@ export function Pricing() {
                     </li>
                   ))}
                 </ul>
-              </Card>
+              </SpotlightCard>
             </Reveal>
           ))}
         </div>

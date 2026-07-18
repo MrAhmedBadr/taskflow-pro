@@ -1,34 +1,31 @@
-import { motion, type Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 import type { ReactNode } from 'react';
+import { EASE_OUT_EXPO, viewportOnce } from '@/lib/motion';
 
 interface RevealProps {
   children: ReactNode;
   delay?: number;
   y?: number;
   className?: string;
+  /** Optional element tag for correct semantics. */
+  as?: 'div' | 'li' | 'span';
 }
 
 /** Fade + rise on scroll into view. Respects reduced-motion via CSS globally. */
-export function Reveal({ children, delay = 0, y = 20, className }: RevealProps) {
+export function Reveal({ children, delay = 0, y = 20, className, as = 'div' }: RevealProps) {
+  const MotionTag = motion[as];
   return (
-    <motion.div
+    <MotionTag
       className={className}
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
+      viewport={viewportOnce}
+      transition={{ duration: 0.6, delay, ease: EASE_OUT_EXPO }}
     >
       {children}
-    </motion.div>
+    </MotionTag>
   );
 }
 
-export const staggerContainer: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
-};
-
-export const staggerItem: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-};
+// Re-exported for backwards compatibility — canonical source is '@/lib/motion'.
+export { staggerContainer, staggerItem } from '@/lib/motion';

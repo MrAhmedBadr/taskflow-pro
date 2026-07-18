@@ -6,6 +6,7 @@ import { toast } from 'sonner';
 import { Eye, EyeOff } from 'lucide-react';
 import { AuthLayout } from '@/features/auth/AuthLayout';
 import { SocialAuth } from '@/features/auth/SocialAuth';
+import { PasswordStrength } from '@/features/auth/PasswordStrength';
 import { registerSchema, type RegisterValues } from '@/features/auth/schemas';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -18,8 +19,10 @@ export default function RegisterPage() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<RegisterValues>({ resolver: zodResolver(registerSchema) });
+  const passwordValue = watch('password') ?? '';
 
   const onSubmit = async (_values: RegisterValues) => {
     await sleep(900);
@@ -42,14 +45,37 @@ export default function RegisterPage() {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
         <div className="grid gap-2">
           <Label htmlFor="name">Full name</Label>
-          <Input id="name" placeholder="Jane Cooper" autoComplete="name" {...register('name')} />
-          {errors.name && <p className="text-xs text-destructive">{errors.name.message}</p>}
+          <Input
+            id="name"
+            placeholder="Jane Cooper"
+            autoComplete="name"
+            error={!!errors.name}
+            aria-describedby={errors.name ? 'name-error' : undefined}
+            {...register('name')}
+          />
+          {errors.name && (
+            <p id="name-error" className="text-xs text-destructive">
+              {errors.name.message}
+            </p>
+          )}
         </div>
 
         <div className="grid gap-2">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="you@company.com" autoComplete="email" {...register('email')} />
-          {errors.email && <p className="text-xs text-destructive">{errors.email.message}</p>}
+          <Input
+            id="email"
+            type="email"
+            placeholder="you@company.com"
+            autoComplete="email"
+            error={!!errors.email}
+            aria-describedby={errors.email ? 'email-error' : undefined}
+            {...register('email')}
+          />
+          {errors.email && (
+            <p id="email-error" className="text-xs text-destructive">
+              {errors.email.message}
+            </p>
+          )}
         </div>
 
         <div className="grid gap-2">
@@ -61,6 +87,8 @@ export default function RegisterPage() {
               placeholder="••••••••"
               autoComplete="new-password"
               className="pr-10"
+              error={!!errors.password}
+              aria-describedby={errors.password ? 'password-error' : undefined}
               {...register('password')}
             />
             <button
@@ -72,13 +100,31 @@ export default function RegisterPage() {
               {show ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
             </button>
           </div>
-          {errors.password && <p className="text-xs text-destructive">{errors.password.message}</p>}
+          {errors.password ? (
+            <p id="password-error" className="text-xs text-destructive">
+              {errors.password.message}
+            </p>
+          ) : (
+            <PasswordStrength value={passwordValue} />
+          )}
         </div>
 
         <div className="grid gap-2">
           <Label htmlFor="confirm">Confirm password</Label>
-          <Input id="confirm" type={show ? 'text' : 'password'} placeholder="••••••••" autoComplete="new-password" {...register('confirm')} />
-          {errors.confirm && <p className="text-xs text-destructive">{errors.confirm.message}</p>}
+          <Input
+            id="confirm"
+            type={show ? 'text' : 'password'}
+            placeholder="••••••••"
+            autoComplete="new-password"
+            error={!!errors.confirm}
+            aria-describedby={errors.confirm ? 'confirm-error' : undefined}
+            {...register('confirm')}
+          />
+          {errors.confirm && (
+            <p id="confirm-error" className="text-xs text-destructive">
+              {errors.confirm.message}
+            </p>
+          )}
         </div>
 
         <Button type="submit" variant="gradient" className="w-full" loading={isSubmitting}>

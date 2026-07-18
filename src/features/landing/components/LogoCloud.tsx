@@ -1,6 +1,6 @@
 import { Reveal } from '@/components/common/Reveal';
 
-const COMPANIES = ['Northwind', 'Lumen', 'Atlas', 'Meridian', 'Shipfast', 'Vercel'];
+const COMPANIES = ['Northwind', 'Lumen', 'Atlas', 'Meridian', 'Shipfast', 'Vercel', 'Linear', 'Ramp'];
 
 export function LogoCloud() {
   return (
@@ -11,14 +11,33 @@ export function LogoCloud() {
             Trusted by fast-moving teams at
           </p>
         </Reveal>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-6 sm:gap-x-16">
-          {COMPANIES.map((name, i) => (
-            <Reveal key={name} delay={i * 0.05}>
-              <span className="text-xl font-semibold tracking-tight text-muted-foreground/70 transition-colors hover:text-foreground sm:text-2xl">
+
+        {/* Infinite marquee — pauses on hover, fades at the edges */}
+        <div className="group mask-fade-x relative mt-8 flex overflow-hidden">
+          <div className="flex shrink-0 animate-marquee items-center gap-x-12 pr-12 group-hover:[animation-play-state:paused] sm:gap-x-16 sm:pr-16">
+            {COMPANIES.map((name) => (
+              <span
+                key={name}
+                className="whitespace-nowrap text-xl font-semibold tracking-tight text-muted-foreground/60 transition-colors hover:text-foreground sm:text-2xl"
+              >
                 {name}
               </span>
-            </Reveal>
-          ))}
+            ))}
+          </div>
+          {/* Duplicate track for a seamless loop */}
+          <div
+            aria-hidden
+            className="flex shrink-0 animate-marquee items-center gap-x-12 pr-12 group-hover:[animation-play-state:paused] sm:gap-x-16 sm:pr-16"
+          >
+            {COMPANIES.map((name) => (
+              <span
+                key={name}
+                className="whitespace-nowrap text-xl font-semibold tracking-tight text-muted-foreground/60 transition-colors hover:text-foreground sm:text-2xl"
+              >
+                {name}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -42,8 +42,20 @@ export default function LoginPage() {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
         <div className="grid gap-2">
           <Label htmlFor="email">Email</Label>
-          <Input id="email" type="email" placeholder="you@company.com" autoComplete="email" {...register('email')} />
-          {errors.email && <p className="text-xs text-destructive">{errors.email.message}</p>}
+          <Input
+            id="email"
+            type="email"
+            placeholder="you@company.com"
+            autoComplete="email"
+            error={!!errors.email}
+            aria-describedby={errors.email ? 'email-error' : undefined}
+            {...register('email')}
+          />
+          {errors.email && (
+            <p id="email-error" className="text-xs text-destructive">
+              {errors.email.message}
+            </p>
+          )}
         </div>
 
         <div className="grid gap-2">
@@ -60,6 +72,8 @@ export default function LoginPage() {
               placeholder="••••••••"
               autoComplete="current-password"
               className="pr-10"
+              error={!!errors.password}
+              aria-describedby={errors.password ? 'password-error' : undefined}
               {...register('password')}
             />
             <button
@@ -71,7 +85,11 @@ export default function LoginPage() {
               {show ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
             </button>
           </div>
-          {errors.password && <p className="text-xs text-destructive">{errors.password.message}</p>}
+          {errors.password && (
+            <p id="password-error" className="text-xs text-destructive">
+              {errors.password.message}
+            </p>
+          )}
         </div>
 
         <label className="flex items-center gap-2 text-sm text-muted-foreground">

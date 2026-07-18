@@ -24,7 +24,8 @@ export function AuthLayout({
     <div className="grid min-h-screen lg:grid-cols-2">
       {/* Brand panel */}
       <div className="relative hidden overflow-hidden lg:flex lg:flex-col lg:justify-between lg:p-12">
-        <div className="aurora absolute inset-0 -z-10" />
+        <div className="aurora aurora-animate absolute inset-0 -z-10" />
+        <div className="grain absolute inset-0 -z-10 opacity-[0.12] mix-blend-overlay" />
         <div className="absolute inset-0 -z-10 bg-grid-dark bg-[size:40px_40px] opacity-40 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />
         <Link to="/">
           <Logo />

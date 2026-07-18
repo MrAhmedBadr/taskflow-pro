@@ -4,27 +4,48 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#0b0b0f" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#08080b" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="color-scheme" content="light dark" />
 
     <!-- Primary SEO meta tags -->
     <title>TaskFlow Pro — Project management, reimagined</title>
     <meta name="title" content="TaskFlow Pro — Project management, reimagined" />
     <meta
       name="description"
-      content="TaskFlow Pro is the premium project management platform for modern teams. Plan, track, and ship work with beautiful boards, real-time collaboration, and powerful analytics."
+      content="TaskFlow Pro is the premium project management platform for modern teams. Plan, track, and ship work with beautiful boards, real-time collaboration, and analytics that actually make sense."
     />
-    <meta name="keywords" content="project management, kanban, tasks, team collaboration, productivity, SaaS" />
+    <meta name="keywords" content="project management, kanban, tasks, team collaboration, productivity, SaaS, sprint planning, agile" />
     <meta name="author" content="TaskFlow Pro" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://taskflow.pro/" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Fonts: Inter (variable) + JetBrains Mono, non-blocking -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..700&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://taskflow.pro/" />
+    <meta property="og:site_name" content="TaskFlow Pro" />
     <meta property="og:title" content="TaskFlow Pro — Project management, reimagined" />
     <meta
       property="og:description"
       content="Plan, track, and ship work with beautiful boards, real-time collaboration, and powerful analytics."
     />
     <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -33,6 +54,29 @@
       name="twitter:description"
       content="Plan, track, and ship work with beautiful boards, real-time collaboration, and powerful analytics."
     />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "TaskFlow Pro",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web",
+        "description": "The premium project management platform for modern teams — beautiful boards, real-time collaboration, and analytics that make sense.",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.9",
+          "ratingCount": "12000"
+        }
+      }
+    </script>
 
     <!-- Prevent theme flash: apply persisted / system theme before paint -->
     <script>

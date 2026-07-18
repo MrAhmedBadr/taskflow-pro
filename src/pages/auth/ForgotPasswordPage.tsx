@@ -56,8 +56,20 @@ export default function ForgotPasswordPage() {
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
           <div className="grid gap-2">
             <Label htmlFor="email">Email</Label>
-            <Input id="email" type="email" placeholder="you@company.com" autoComplete="email" {...register('email')} />
-            {errors.email && <p className="text-xs text-destructive">{errors.email.message}</p>}
+            <Input
+              id="email"
+              type="email"
+              placeholder="you@company.com"
+              autoComplete="email"
+              error={!!errors.email}
+              aria-describedby={errors.email ? 'email-error' : undefined}
+              {...register('email')}
+            />
+            {errors.email && (
+              <p id="email-error" className="text-xs text-destructive">
+                {errors.email.message}
+              </p>
+            )}
           </div>
           <Button type="submit" variant="gradient" className="w-full" loading={isSubmitting}>
             Send reset link

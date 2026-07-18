@@ -7,7 +7,7 @@ import { Logo } from '@/components/common/Logo';
 export default function NotFoundPage() {
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center">
-      <div className="aurora pointer-events-none absolute inset-0 -z-10 opacity-60" />
+      <div className="aurora aurora-animate pointer-events-none absolute inset-0 -z-10 opacity-60" />
       <Link to="/" className="absolute left-6 top-6">
         <Logo />
       </Link>

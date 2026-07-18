@@ -20,6 +20,14 @@ export default defineConfig({
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'chart-vendor': ['recharts'],
           'motion-vendor': ['framer-motion'],
+          'radix-vendor': [
+            '@radix-ui/react-dialog',
+            '@radix-ui/react-tooltip',
+            '@radix-ui/react-avatar',
+            '@radix-ui/react-label',
+            '@radix-ui/react-slot',
+          ],
+          'form-vendor': ['react-hook-form', '@hookform/resolvers', 'zod'],
           // 'firebase-vendor' is added once Firebase services are imported (see src/lib/firebase.ts).
         },
       },

@@ -10,7 +10,7 @@ export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="py-24 sm:py-32">
+    <section id="faq" className="scroll-mt-24 py-24 sm:py-32">
       <div className="container">
         <SectionHeading
           eyebrow="FAQ"
@@ -25,13 +25,15 @@ export function FAQ() {
               <Reveal key={faq.q} delay={i * 0.04}>
                 <div
                   className={cn(
-                    'overflow-hidden rounded-xl border bg-card transition-colors',
-                    isOpen ? 'border-primary/30' : 'border-border',
+                    'overflow-hidden rounded-xl border bg-card transition-all duration-300',
+                    isOpen
+                      ? 'border-primary/30 shadow-card'
+                      : 'border-border hover:border-border/70',
                   )}
                 >
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
-                    className="flex w-full items-center justify-between gap-4 p-5 text-left"
+                    className="flex w-full items-center justify-between gap-4 p-5 text-left transition-colors hover:text-primary"
                     aria-expanded={isOpen}
                   >
                     <span className="text-base font-medium">{faq.q}</span>
