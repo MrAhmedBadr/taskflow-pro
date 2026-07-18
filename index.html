@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <meta
+      name="theme-color"
+      content="#08080b"
+      media="(prefers-color-scheme: dark)"
+    />
+
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- SEO -->
+    <title>TaskFlow Pro — Project management, reimagined</title>
+
+    <meta
+      name="description"
+      content="TaskFlow Pro is the premium project management platform for modern teams. Plan, track, and ship work with beautiful boards, real-time collaboration, and analytics."
+    />
+
+    <meta
+      name="keywords"
+      content="project management, kanban, tasks, team collaboration, productivity, SaaS"
+    />
+
+    <meta name="author" content="TaskFlow Pro" />
+    <meta name="robots" content="index, follow" />
+
+    <link
+      rel="canonical"
+      href="https://mrahmedbadr.github.io/taskflow-pro/"
+    />
+
+    <link rel="manifest" href="./site.webmanifest" />
+
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+
+
+    <!-- Open Graph -->
+
+    <meta property="og:type" content="website" />
+
+    <meta
+      property="og:url"
+      content="https://mrahmedbadr.github.io/taskflow-pro/"
+    />
+
+    <meta
+      property="og:title"
+      content="TaskFlow Pro — Project management, reimagined"
+    />
+
+    <meta
+      property="og:description"
+      content="Plan, track, and ship work with beautiful boards, collaboration, and analytics."
+    />
+
+    <meta property="og:image" content="./og-image.png" />
+
+
+    <!-- Twitter -->
+
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta
+      name="twitter:title"
+      content="TaskFlow Pro — Project management, reimagined"
+    />
+
+    <meta
+      name="twitter:description"
+      content="Premium project management platform."
+    />
+
+    <meta name="twitter:image" content="./og-image.png" />
+
+
+    <!-- Structured Data -->
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "TaskFlow Pro",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Premium project management platform for modern teams.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+
+    <!-- Theme -->
+
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("taskflow-theme");
+
+          var theme = stored
+            ? JSON.parse(stored).state.theme
+            : "system";
+
+          var isDark =
+            theme === "dark" ||
+            (theme === "system" &&
+              window.matchMedia(
+                "(prefers-color-scheme: dark)"
+              ).matches);
+
+          document.documentElement.classList.toggle(
+            "dark",
+            isDark
+          );
+
+        } catch (e) {}
+      })();
+    </script>
+
+    <script type="module" crossorigin src="/taskflow-pro/assets/index-BZl3xclY.js"></script>
+    <link rel="modulepreload" crossorigin href="/taskflow-pro/assets/react-vendor-fiWpuzWv.js">
+    <link rel="modulepreload" crossorigin href="/taskflow-pro/assets/radix-vendor-CWSu2obP.js">
+    <link rel="modulepreload" crossorigin href="/taskflow-pro/assets/chart-vendor-D2t7WB_-.js">
+    <link rel="modulepreload" crossorigin href="/taskflow-pro/assets/motion-vendor-CGYqegNT.js">
+    <link rel="stylesheet" crossorigin href="/taskflow-pro/assets/index-DhJn3RnO.css">
+  </head>
+
+
+  <body>
+
+    <div id="root"></div>
+
+
+  </body>
+
+</html>
