@@ -13,19 +13,26 @@ const ForgotPasswordPage = lazy(() => import('@/pages/auth/ForgotPasswordPage'))
 const DashboardPreview = lazy(() => import('@/pages/DashboardPreview'));
 const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
-/** Wraps each route in a fade/slide page transition. */
+/**
+ * Wraps each route in a fade/slide page transition.
+ *
+ * Suspense is kept OUTSIDE AnimatePresence on purpose: if a lazy route
+ * suspends while nested inside an animating (mode="wait") element, its enter
+ * animation can stall at opacity:0 and the page renders blank. Resolving the
+ * chunk first, then animating, avoids that deadlock.
+ */
 function AnimatedRoutes() {
   const location = useLocation();
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={location.pathname}
-        variants={pageTransition}
-        initial="initial"
-        animate="animate"
-        exit="exit"
-      >
-        <Suspense fallback={<PageLoader />}>
+    <Suspense fallback={<PageLoader />}>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={location.pathname}
+          variants={pageTransition}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+        >
           <Routes location={location}>
             <Route path="/" element={<LandingPage />} />
             <Route path="/login" element={<LoginPage />} />
@@ -34,9 +41,9 @@ function AnimatedRoutes() {
             <Route path="/dashboard/*" element={<DashboardPreview />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
-        </Suspense>
-      </motion.div>
-    </AnimatePresence>
+        </motion.div>
+      </AnimatePresence>
+    </Suspense>
   );
 }
 
