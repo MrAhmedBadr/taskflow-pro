@@ -4,18 +4,21 @@ import path from 'node:path';
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/taskflow-pro/',
+
   plugins: [react()],
+
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
     },
   },
+
   build: {
     target: 'es2020',
     cssCodeSplit: true,
     rollupOptions: {
       output: {
-        // Split heavy vendors into their own chunks for better caching / smaller initial bundle.
         manualChunks: {
           'react-vendor': ['react', 'react-dom', 'react-router-dom'],
           'chart-vendor': ['recharts'],
@@ -28,7 +31,6 @@ export default defineConfig({
             '@radix-ui/react-slot',
           ],
           'form-vendor': ['react-hook-form', '@hookform/resolvers', 'zod'],
-          // 'firebase-vendor' is added once Firebase services are imported (see src/lib/firebase.ts).
         },
       },
     },
